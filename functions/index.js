@@ -56,6 +56,7 @@ exports.getStaticCovidData = functions
         if (!doc.exists) {
           res.status(400).send({success: 'false'});
         } else {
+          res.setHeader('Access-Control-Allow-Origin', '*');
           res.status(200).send(doc.data());
         }
       })

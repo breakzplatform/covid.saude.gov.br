@@ -20,6 +20,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   const responseJSON = await response.json();
 
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(200).send({xlsx: responseJSON.results[0].arquivo.url});
 }
 
