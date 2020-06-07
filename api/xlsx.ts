@@ -1,4 +1,5 @@
 import { NowRequest, NowResponse } from '@vercel/node';
+import fetch from 'node-fetch';
 
 export default async (req: NowRequest, res: NowResponse) => {
   const response = await fetch("https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeral", {
@@ -17,6 +18,8 @@ export default async (req: NowRequest, res: NowResponse) => {
     "mode": "cors"
   });
 
-  response.status(200).send(response.body);
+  const responseJSON = await response.json();
+
+  res.status(200).send({xlsx: responseJSON.results[0].arquivo.url});
 }
 
