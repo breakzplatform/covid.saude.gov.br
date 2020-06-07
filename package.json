@@ -5,8 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "exceljs": "^4.0.1",
-    "node-fetch": "^2.6.0",
-    "read-excel-file": "^4.0.6"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
   "scripts": {
