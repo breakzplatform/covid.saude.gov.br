@@ -1,0 +1,25 @@
+{
+  "name": "covid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "exceljs": "^4.0.1",
+    "node-fetch": "^2.6.0",
+    "read-excel-file": "^4.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breakzplatform/covid.saude.gov.br.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/breakzplatform/covid.saude.gov.br/issues"
+  },
+  "homepage": "https://github.com/breakzplatform/covid.saude.gov.br#readme"
+}
