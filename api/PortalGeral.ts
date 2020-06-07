@@ -17,6 +17,6 @@ export default async (req: NowRequest, res: NowResponse) => {
     "mode": "cors"
   });
 
-  res.json(response.body);
+  response.status(200).send(response.body);
 }
 
