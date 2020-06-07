@@ -21,10 +21,8 @@ export default async (req: NowRequest, res: NowResponse) => {
 
    if(row[1] === 'Norte') {
      lastBrasilRow = workbook.worksheets[0].getRow(i-1).values;
-     console.log(lastBrasilRow);
      break;
    }
-   
  }
 
   res.status(200).send({totalObitos: lastBrasilRow[13], totalCasos: lastBrasilRow[11]});

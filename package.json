@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@vercel/node": "^1.6.1",
     "exceljs": "^4.0.1",
     "node-fetch": "^2.6.0"
   },
