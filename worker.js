@@ -104,9 +104,16 @@ class ElementHandler {
            fetch('https://us-central1-covid-5ce43.cloudfunctions.net/getStaticCovidData')
             .then(async response => {
                const covidData = await response.json();
-               document.getElementById('totalObitosId').innerText = new Intl.NumberFormat('pt-BR').format(covidData.totalObitos);
-               document.getElementById('totalCasosId').innerText = new Intl.NumberFormat('pt-BR').format(covidData.totalCasos);
-            })
+
+               const totalObitosEl = document.getElementById('totalObitosId');
+               const totalCasosEl = document.getElementById('totalCasosId');
+              
+               totalObitosEl.innerText = new Intl.NumberFormat('pt-BR').format(covidData.totalObitos);
+               totalCasosEl.innerText = new Intl.NumberFormat('pt-BR').format(covidData.totalCasos);
+
+               totalObitosEl.innerHTML = totalObitosEl.innerHTML + "<br><div style='font-size: 14px; color: var(--ion-color-grey-2); margin-top: 15px'>Acumulados</div>";
+               totalCasosEl.innerHTML = totalCasosEl.innerHTML + "<br><div style='font-size: 14px; color: var(--ion-color-grey-2); margin-top: 15px'>Acumulados</div>";
+            });
 
            // fetch Planilha
            fetch("https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeral", {
