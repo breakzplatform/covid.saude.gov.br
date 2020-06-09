@@ -20,16 +20,20 @@ async function gov(path: string): Promise<unknown> {
     const page = await browser.newPage();
 
     return new Promise(async (resolve) => {
-      page.on('response', async (response) => {
-        if (response.url().endsWith(path)) {
-          try {
-            const data = await response.json();
-            resolve(data);
-          } catch (e) {}
-        }
-      });
+      try {
+        page.on('response', async (response) => {
+          if (response.url().endsWith(path)) {
+            try {
+              const data = await response.json();
+              resolve(data);
+            } catch (e) {}
+          }
+        });
 
-      await page.goto('https://covid.saude.gov.br');
+        await page.goto('https://covid.saude.gov.br');
+      } catch {
+        resolve(null);
+      }
     });
   } catch {
     return null;
