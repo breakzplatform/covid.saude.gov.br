@@ -16,7 +16,6 @@ const apisConhecidas = [
 ];
 
 async function gov(path: string): Promise<unknown> {
-  try {
     const browser = await pptr.launch({
       args: chrome.args,
       executablePath: await chrome.executablePath,
@@ -31,7 +30,7 @@ async function gov(path: string): Promise<unknown> {
             try {
               const data = await response.json();
               resolve(data);
-            } catch (e) {}
+            } catch {}
           }
         });
 
@@ -40,17 +39,10 @@ async function gov(path: string): Promise<unknown> {
         resolve(null);
       }
     });
-  } catch {
-    return null;
-  }
 }
 
 export default async (req: NowRequest, res: NowResponse) => {
-  const {
-    query: { govApi }
-  } = req;
-
-  console.log(govApi);
+  const { query: { govApi } } = req;
 
   const res204 = () => res.status(204).send({});
 
@@ -65,6 +57,4 @@ export default async (req: NowRequest, res: NowResponse) => {
     console.error(e);
     res.status(500).send({});
   }
-
-
 }
