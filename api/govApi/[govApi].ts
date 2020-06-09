@@ -24,7 +24,6 @@ async function gov(path: string): Promise<unknown> {
         try {
           const data = await response.json();
           resolve(data);
-          browser.close();
         } catch (e) {}
       }
     });
