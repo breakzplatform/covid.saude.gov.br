@@ -13,7 +13,6 @@ const apisConhecidas = [
   'PortalRegiaoSaude',
   'PortalRegiaoUf',
   'PortalCasos',
-
 ];
 
 async function gov(path: string): Promise<unknown> {
