@@ -11,25 +11,29 @@ const apisConhecidas = [
 ];
 
 async function gov(path: string): Promise<unknown> {
-  const browser = await pptr.launch({
-    args: chrome.args,
-    executablePath: await chrome.executablePath,
-    headless: chrome.headless
-  });
-  const page = await browser.newPage();
-
-  return new Promise(async (resolve) => {
-    page.on('response', async (response) => {
-      if (response.url().endsWith(path)) {
-        try {
-          const data = await response.json();
-          resolve(data);
-        } catch (e) {}
-      }
+  try {
+    const browser = await pptr.launch({
+      args: chrome.args,
+      executablePath: await chrome.executablePath,
+      headless: chrome.headless
     });
+    const page = await browser.newPage();
 
-    await page.goto('https://covid.saude.gov.br');
-  });
+    return new Promise(async (resolve) => {
+      page.on('response', async (response) => {
+        if (response.url().endsWith(path)) {
+          try {
+            const data = await response.json();
+            resolve(data);
+          } catch (e) {}
+        }
+      });
+
+      await page.goto('https://covid.saude.gov.br');
+    });
+  } catch {
+    return null;
+  }
 }
 
 export default async (req: NowRequest, res: NowResponse) => {
@@ -46,7 +50,8 @@ export default async (req: NowRequest, res: NowResponse) => {
 
   try {
     const data = await gov(govApi);
-    res.send(data);
+    if (data) res.send(data);
+    else res204();
   } catch (e) {
     console.error(e);
     res.status(500).send({});
