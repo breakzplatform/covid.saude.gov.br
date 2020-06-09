@@ -45,8 +45,13 @@ export default async (req: NowRequest, res: NowResponse) => {
   if (Array.isArray(govApi)) return res204();
   if (!apisConhecidas.includes(govApi)) return res204();
 
-  const data = await gov(govApi);
+  try {
+    const data = await gov(govApi);
+    res.send(data);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({});
+  }
 
-  res.send(data);
 
 }
